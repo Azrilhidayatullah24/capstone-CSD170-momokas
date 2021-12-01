@@ -16,5 +16,7 @@ class ForgetpassActivity : AppCompatActivity() {
         detailBinding = ActivityForgetpassBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
 
+        detailBinding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
     }
 }

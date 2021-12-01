@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6680078112",
+    "project_id": "penjualan-kendaraan-bekas",
+    "storage_bucket": "penjualan-kendaraan-bekas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6680078112:android:267ae1b7e7ecd3e2549945",
+        "android_client_info": {
+          "package_name": "com.capstone.momokas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6680078112-jd4lg3fhp7ptlp8a04bthi7165f0j7vs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN2Qss-XT-NXtxAm2Rac1JBPpFNM0TgWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6680078112-jd4lg3fhp7ptlp8a04bthi7165f0j7vs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
