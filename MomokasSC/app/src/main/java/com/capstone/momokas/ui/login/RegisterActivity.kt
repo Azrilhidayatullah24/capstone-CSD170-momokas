@@ -1,166 +1,171 @@
-package com.capstone.momokas.ui.login;
+package com.capstone.momokas.ui.login
 
-import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.PasswordTransformationMethod;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import android.widget.ProgressBar
+import com.google.firebase.auth.FirebaseAuth
+import android.os.Bundle
+import com.capstone.momokas.R
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.capstone.momokas.ui.login.RegistModel
+import com.google.android.gms.tasks.OnSuccessListener
+import android.content.Intent
+import com.capstone.momokas.MainActivity
+import android.text.TextUtils
+import android.view.View
+import android.widget.Button
 
-import com.capstone.momokas.MainActivity;
-import com.capstone.momokas.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
-public class RegisterActivity extends AppCompatActivity {
-
+class RegisterActivity : AppCompatActivity() {
     //Deklarasi Variable
-    private TextInputEditText myEmail, myPassword,username,nama,alamat,notelp,confirm;
-    private ProgressBar progressBar;
-    private FirebaseAuth auth;
-    private String getEmail, getPassword, getUsername,getnama, getalamat,getnohp;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    private var myEmail: TextInputEditText? = null
+    private var myPassword: TextInputEditText? = null
+    private var username: TextInputEditText? = null
+    private var nama: TextInputEditText? = null
+    private var alamat: TextInputEditText? = null
+    private var notelp: TextInputEditText? = null
+    private var confirm: TextInputEditText? = null
+    private var progressBar: ProgressBar? = null
+    private var auth: FirebaseAuth? = null
+    private var getEmail: String? = null
+    private var getPassword: String? = null
+    private val getUsername: String? = null
+    private val getnama: String? = null
+    private val getalamat: String? = null
+    private val getnohp: String? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
         //Inisialisasi Widget dan Membuat Objek dari Firebae Authenticaion
-        username = (TextInputEditText)findViewById(R.id.inputUsername);
-        nama = (TextInputEditText)findViewById(R.id.inputName);
-        alamat = (TextInputEditText)findViewById(R.id.inputAddress);
-        notelp = (TextInputEditText)findViewById(R.id.inputPhonenumber);
-        confirm = (TextInputEditText)findViewById(R.id.inputRetype_Password);
-        myEmail = (TextInputEditText)findViewById(R.id.inputEmail);
-        myPassword = (TextInputEditText)findViewById(R.id.inputPassword);
-        Button regButtton = findViewById(R.id.btn_daftar);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.GONE);
-        auth = FirebaseAuth.getInstance();
-
-
-        regButtton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cekDataUser();
+        username = findViewById<View>(R.id.inputUsername) as TextInputEditText
+        nama = findViewById<View>(R.id.inputName) as TextInputEditText
+        alamat = findViewById<View>(R.id.inputAddress) as TextInputEditText
+        notelp = findViewById<View>(R.id.inputPhonenumber) as TextInputEditText
+        confirm = findViewById<View>(R.id.inputRetype_Password) as TextInputEditText
+        myEmail = findViewById<View>(R.id.inputEmail) as TextInputEditText
+        myPassword = findViewById<View>(R.id.inputPassword) as TextInputEditText
+        val regButtton = findViewById<Button>(R.id.btn_daftar)
+        progressBar = findViewById(R.id.progressBar)
+        progressBar?.setVisibility(View.GONE)
+        auth = FirebaseAuth.getInstance()
+        regButtton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                cekDataUser()
             }
 
             //Method ini digunakan untuk mengecek dan mendapatkan data yang dimasukan user
-            private void cekDataUser() {
+            private fun cekDataUser() {
                 //Mendapatkan dat yang diinputkan User
-                getEmail = myEmail.getText().toString();
-                getPassword = myPassword.getText().toString();
-                String getemail = myEmail.getText().toString();
-                String getUsername = username.getText().toString();
-                String getnama = nama.getText().toString();
-                String getalamat = alamat.getText().toString();
-                String getnohp = notelp.getText().toString();
+                getEmail = myEmail!!.text.toString()
+                getPassword = myPassword!!.text.toString()
+                val getemail = myEmail!!.text.toString()
+                val getUsername = username!!.text.toString()
+                val getnama = nama!!.text.toString()
+                val getalamat = alamat!!.text.toString()
+                val getnohp = notelp!!.text.toString()
 
 
                 // Mendapatkan Referensi dari Database
-                auth = FirebaseAuth.getInstance();
+                auth = FirebaseAuth.getInstance()
 
 
                 //Mengecek apakah email dan sandi kosong atau tidak
                 if (isEmpty(getUsername) || isEmpty(getnama) || isEmpty(getalamat)
-                        || isEmpty(getnohp) || isEmpty(getemail)) {
+                    || isEmpty(getnohp) || isEmpty(getemail)
+                ) {
                     //Jika Ada, maka akan menampilkan pesan singkan seperti berikut ini.
-                    Toast.makeText(getApplicationContext(), "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show();
-                }
-                else if (isEmpty(getEmail) || isEmpty(getPassword)) {
-                    Toast.makeText(getApplicationContext(), "Email Atau Sandi Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                        applicationContext,
+                        "Data tidak boleh ada yang kosong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (isEmpty(getEmail!!) || isEmpty(getPassword!!)) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Email Atau Sandi Tidak Boleh Kosong",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     //Mengecek panjang karakter password baru yang akan didaftarkan
-                    if (getPassword.length() < 6) {
-                        Toast.makeText(getApplicationContext(), "Sandi Terlalu Pendek, MIN 6 Karakter", Toast.LENGTH_SHORT).show();
-                    }else{
-                        progressBar.setVisibility(View.VISIBLE);
-
-                        createUserAccount();
-
-
+                    if (getPassword!!.length < 6) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sandi Terlalu Pendek, MIN 6 Karakter",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        progressBar?.setVisibility(View.VISIBLE)
+                        createUserAccount()
                     }
                 }
-
             }
 
             //Method ini digunakan untuk membuat akun baru user
-            private void createUserAccount() {
-                getEmail = myEmail.getText().toString();
-                getPassword = myPassword.getText().toString();
-                final String getUsername = username.getText().toString();
-                final String getnama = nama.getText().toString();
-                final String getalamat = alamat.getText().toString();
-                final String getnohp = notelp.getText().toString();
+            private fun createUserAccount() {
+                getEmail = myEmail!!.text.toString()
+                getPassword = myPassword!!.text.toString()
+                val getUsername = username!!.text.toString()
+                val getnama = nama!!.text.toString()
+                val getalamat = alamat!!.text.toString()
+                val getnohp = notelp!!.text.toString()
+                auth!!.createUserWithEmailAndPassword(getEmail!!, getPassword!!)
+                    .addOnCompleteListener { task ->
+                        //Mendapatkan Instance dari Database
+                        val database = FirebaseDatabase.getInstance().reference
 
 
-                auth.createUserWithEmailAndPassword(getEmail, getPassword)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                        //Mengecek status keberhasilan saat medaftarkan email dan sandi baru
+                        if (task.isSuccessful) {
 
-                                //Mendapatkan Instance dari Database
-                                DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                            //Mendapatkan UserID dari pengguna yang Terautentikasi
+                            val getUserID = auth!!.currentUser!!.uid
 
-
-                                //Mengecek status keberhasilan saat medaftarkan email dan sandi baru
-
-                                if (task.isSuccessful()) {
-
-                                    //Mendapatkan UserID dari pengguna yang Terautentikasi
-                                    String getUserID = auth.getCurrentUser().getUid();
-
-                                     /*
-        Jika Tidak, maka data dapat diproses dan meyimpannya pada Database
-        Menyimpan data referensi pada Database berdasarkan User ID dari masing-masing Akun
-        */
-                                    database.child("User").child(getUserID)
-                                            .setValue(new RegistModel(getUsername, getnama, getalamat,
-                                                    getnohp, getEmail))
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    //Peristiwa ini terjadi saat user berhasil menyimpan datanya kedalam Database
-                                                    username.setText("");
-                                                    nama.setText("");
-                                                    alamat.setText("");
-                                                    notelp.setText("");
-                                                    myEmail.setText("");
-                                                    Toast.makeText(RegisterActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-
-                                    Toast.makeText(RegisterActivity.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                                    finish();
-                                }else {
-                                    Toast.makeText(RegisterActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.GONE);
+                            /*
+                    Jika Tidak, maka data dapat diproses dan meyimpannya pada Database
+                    Menyimpan data referensi pada Database berdasarkan User ID dari masing-masing Akun
+                    */database.child("User").child(getUserID)
+                                .setValue(
+                                    RegistModel(
+                                        getUsername, getnama, getalamat,
+                                        getnohp, getEmail
+                                    )
+                                )
+                                .addOnSuccessListener { //Peristiwa ini terjadi saat user berhasil menyimpan datanya kedalam Database
+                                    username!!.setText("")
+                                    nama!!.setText("")
+                                    alamat!!.setText("")
+                                    notelp!!.setText("")
+                                    myEmail!!.setText("")
+                                    Toast.makeText(
+                                        this@RegisterActivity,
+                                        "Berhasil",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                            }
-                        });
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                "Sign Up Success",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                task.exception.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            progressBar?.setVisibility(View.GONE)
+                        }
+                    }
             }
-
-
-        });
+        })
     }
-    private boolean isEmpty(String s){
-        return TextUtils.isEmpty(s);
+
+    private fun isEmpty(s: String): Boolean {
+        return TextUtils.isEmpty(s)
     }
 }
