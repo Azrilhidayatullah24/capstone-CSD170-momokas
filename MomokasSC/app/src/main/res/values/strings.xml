@@ -19,4 +19,21 @@
     <string name="address">Address</string>
     <string name="password">Password</string>
     <string name="retype_password">Retype Password</string>
+    <string name="text_cari">Cari</string>
+    <string name="text_semua">Semua</string>
+    <string name="text_mobil">Mobil</string>
+    <string name="text_motor">Motor</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="merk">Merk</string>
+    <string name="tipe">Tipe</string>
+    <string name="cc">CC</string>
+    <string name="tahun">Tahun</string>
+    <string name="jumlah_kilometer">Jumlah Kilometer</string>
+    <string name="pajak">Pajak</string>
+    <string name="kelengkapan">Kelengkapan</string>
+    <string name="rp">Rp.</string>
+    <string name="harga">Harga</string>
+    <string name="kepemilikan">Kepemilikan</string>
+    <string name="deskrpsi">Deskrpsi</string>
 </resources>

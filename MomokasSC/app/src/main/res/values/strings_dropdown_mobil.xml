@@ -1,0 +1,29 @@
+<resources>
+    <!-- MOBIL -->
+    <string-array name="merk_mobil">
+        <item>Mitsubitsi</item>
+        <item>Honda</item>
+        <item>Suzuki</item>
+    </string-array>
+
+    <string-array name="tipe_mitsubitsi">
+        <item>Xpander</item>
+        <item>Pajero</item>
+    </string-array>
+
+    <string-array name="tipe_hondaMobil">
+        <item>Civic</item>
+        <item>Mobilio</item>
+    </string-array>
+
+    <string-array name="tipe_suzukiMobil">
+        <item>Ertiga</item>
+        <item>APV</item>
+    </string-array>
+
+    <string-array name="cc_mobil">
+        <item>1500</item>
+        <item>2500</item>
+        <item>3000</item>
+    </string-array>
+</resources>

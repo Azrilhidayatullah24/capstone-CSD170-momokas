@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp"
@@ -14,31 +14,224 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/topAppBar"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:title="Post">
+            app:title="Post Kendaraan">
 
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/text_post"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/merkDropDown"
+        style="@style/dropDownStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/merk"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tipeDropDown"
+        android:labelFor="@id/inputMerk">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputMerk"
+            style="@style/textItemDropDown"
+            android:inputType="text"
+            android:nextFocusForward="@id/inputTipe"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tipeDropDown"
+        style="@style/dropDownStyle"
+        app:boxBackgroundColor="@color/white"
+        android:hint="@string/tipe"
+        app:layout_constraintTop_toTopOf="@id/merkDropDown"
+        app:layout_constraintStart_toEndOf="@id/merkDropDown"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:labelFor="@id/inputTipe">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputTipe"
+            style="@style/textItemDropDown"
+            android:inputType="text"
+            android:nextFocusForward="@id/inputCC"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ccDropDown"
+        style="@style/dropDownStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/cc"
+        app:layout_constraintTop_toBottomOf="@id/merkDropDown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tahunDropDown"
+        android:labelFor="@id/inputCC">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputCC"
+            style="@style/textItemDropDown"
+            android:inputType="number"
+            android:nextFocusForward="@id/inputTahun"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tahunDropDown"
+        style="@style/dropDownStyle"
+        android:hint="@string/tahun"
+        app:layout_constraintTop_toTopOf="@id/ccDropDown"
+        app:layout_constraintStart_toEndOf="@id/ccDropDown"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:labelFor="@id/inputTahun">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputTahun"
+            style="@style/textItemDropDown"
+            android:inputType="text"
+            android:nextFocusForward="@id/inputKilometer"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvKilometer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:hint="@string/jumlah_kilometer"
+        app:layout_constraintTop_toBottomOf="@id/ccDropDown"
+        app:layout_constraintStart_toStartOf="@id/ccDropDown"
+        app:layout_constraintEnd_toStartOf="@id/pajakDropDown"
+        android:labelFor="@id/inputKilometer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputKilometer"
+            style="@style/textItemDropDown"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pajakDropDown"
+        style="@style/dropDownStyle"
+        android:hint="@string/pajak"
+        app:layout_constraintTop_toTopOf="@id/tvKilometer"
+        app:layout_constraintStart_toEndOf="@id/tvKilometer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:labelFor="@id/inputPajak">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputPajak"
+            style="@style/textItemDropDown"
+            android:inputType="none"
+            android:imeOptions="actionNone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/suratDropDown"
+        style="@style/dropDownStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/kelengkapan"
+        app:layout_constraintTop_toBottomOf="@id/tvKilometer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/kepemilikanDropDown"
+        android:labelFor="@id/inputKelengkapan">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputKelengkapan"
+            style="@style/textItemDropDown"
+            android:inputType="none"
+            android:imeOptions="actionNone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/kepemilikanDropDown"
+        style="@style/dropDownStyle"
+        android:hint="@string/kepemilikan"
+        app:layout_constraintTop_toTopOf="@id/suratDropDown"
+        app:layout_constraintStart_toEndOf="@id/suratDropDown"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:labelFor="@id/inputKepemilikan">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputKepemilikan"
+            style="@style/textItemDropDown"
+            android:inputType="none"
+            android:imeOptions="actionNone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvHarga"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        app:boxBackgroundColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/harga"
+        app:layout_constraintTop_toBottomOf="@id/suratDropDown"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:labelFor="@id/inputHarga"
+        app:prefixText="@string/rp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputHarga"
+            style="@style/textItemDropDown"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvDeskripsi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/deskrpsi"
+        app:layout_constraintTop_toBottomOf="@id/tvHarga"
+        app:layout_constraintStart_toStartOf="parent"
+        android:labelFor="@id/inputDeskripsi">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:fontFamily="sans-serif"
+            android:textColor="@color/SecondaryText"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:imeOptions="actionDone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTambah"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Simpan"
+        app:cornerRadius="20dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDeskripsi"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

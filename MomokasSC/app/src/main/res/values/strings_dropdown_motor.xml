@@ -1,0 +1,30 @@
+<resources>
+<!-- MOTOR -->
+    <string-array name="merk_motor">
+        <item>Yamaha</item>
+        <item>Honda</item>
+        <item>Suzuki</item>
+    </string-array>
+
+    <string-array name="tipe_yamaha">
+        <item>Vixion</item>
+        <item>Jupiter MX</item>
+    </string-array>
+
+    <string-array name="tipe_hondaMotor">
+        <item>Vario</item>
+        <item>PCX</item>
+    </string-array>
+
+    <string-array name="tipe_suzukiMotor">
+        <item>GSX-R150</item>
+        <item>Satria F150</item>
+    </string-array>
+
+    <string-array name="cc_motor">
+        <item>250</item>
+        <item>150</item>
+        <item>125</item>
+        <item>110</item>
+    </string-array>
+</resources>
