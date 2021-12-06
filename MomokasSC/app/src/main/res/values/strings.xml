@@ -23,7 +23,7 @@
     <string name="text_semua">Semua</string>
     <string name="text_mobil">Mobil</string>
     <string name="text_motor">Motor</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="merk">Merk</string>
     <string name="tipe">Tipe</string>
