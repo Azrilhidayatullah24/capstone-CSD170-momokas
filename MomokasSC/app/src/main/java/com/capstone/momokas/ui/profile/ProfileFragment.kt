@@ -64,19 +64,17 @@ class ProfileFragment : Fragment() {
         profileViewModel =
             ViewModelProvider(this)[ProfileViewModel::class.java]
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val textView: TextView = root.findViewById(R.id.text_profile)
 
         profileViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
         })
 
         auth = FirebaseAuth.getInstance().currentUser
         profileImage = root.findViewById(R.id.tv_photo_profile)
         getNama = root.findViewById(R.id.tv_nama_user)
         getUsername = root.findViewById(R.id.tv_username)
-        getAlamat = root.findViewById(R.id.tv_Phonenumber)
+        getAlamat = root.findViewById(R.id.tv_Address)
         getEmail = root.findViewById(R.id.tv_email)
-        getHp = root.findViewById(R.id.tv_Address)
+        getHp = root.findViewById(R.id.tv_Phonenumber)
         progressBar = root.findViewById(R.id.progressBar)
         foto = root.findViewById(R.id.floatingActionButton)
         getDatabase = FirebaseDatabase.getInstance()
