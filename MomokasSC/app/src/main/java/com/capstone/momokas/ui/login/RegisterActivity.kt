@@ -18,8 +18,13 @@ import com.capstone.momokas.MainActivity
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
+import com.capstone.momokas.databinding.ActivityForgetpassBinding
+import com.capstone.momokas.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var detailBinding: ActivityRegisterBinding
+
     //Deklarasi Variable
     private var myEmail: TextInputEditText? = null
     private var myPassword: TextInputEditText? = null
@@ -39,6 +44,12 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        detailBinding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(detailBinding.root)
+
+        detailBinding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
         //Inisialisasi Widget dan Membuat Objek dari Firebae Authenticaion
         username = findViewById<View>(R.id.inputUsername) as TextInputEditText
         nama = findViewById<View>(R.id.inputName) as TextInputEditText

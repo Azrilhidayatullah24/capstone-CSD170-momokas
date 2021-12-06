@@ -1,0 +1,5 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvDropDownItem"
+    android:text="Text"
+    style="@style/textItemDropDown"
+    android:padding="14dp"/>
