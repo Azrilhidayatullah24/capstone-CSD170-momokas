@@ -21,6 +21,7 @@
         <entry key="..\:/Users/Acer/.gradle/caches/transforms-3/678f8f90516713ab9a21055c8d2ba99f/transformed/appcompat-1.4.0/res/drawable/abc_ic_ab_back_material.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/drawable/ic_baseline_account_circle_200.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/drawable/ic_outline_https_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_forgetpass.xml" value="0.209375" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_login.xml" value="0.25" />
@@ -28,7 +29,7 @@
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/dropdown_item.xml" value="0.209375" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.209375" />
-        <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
+        <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_post.xml" value="0.209375" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/Acer/Desktop/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/item_rv_kendaraan.xml" value="0.209375" />
