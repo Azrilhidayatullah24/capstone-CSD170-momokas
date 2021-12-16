@@ -174,7 +174,7 @@ class ProfileFragment : Fragment() {
             galleryIntent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(
                 Intent.createChooser(galleryIntent, "SELECT IMAGE"),
-               GALLERY_PICK
+                GALLERY_PICK
             )
         }
     }
@@ -184,10 +184,11 @@ class ProfileFragment : Fragment() {
         progressBar!!.visibility = View.VISIBLE
         val imageURL = UUID.randomUUID().toString()
         val imagePath = photoReference.child(imageURL)
+
         imagePath.putFile(mImageUri!!)
-            .addOnCompleteListener { task: Task<UploadTask.TaskSnapshot?> ->
-                if (task.isSuccessful) {
-                    photoReference.child(imageURL).downloadUrl
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    imagePath.downloadUrl
                         .addOnSuccessListener { uri: Uri ->
                             val downloadUrl = uri.toString()
                             database!!.child("PhotoProfil").child(auth!!.uid)

@@ -10,4 +10,37 @@
     app:cardElevation="8dp"
     android:layout_gravity="top|center">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:backgroundTint="#0066FF"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="170dp"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center|top"
+            app:cardCornerRadius="10dp">
+            <ImageView
+                android:id="@+id/imageKendaraan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tvJudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Honda PCX 2020"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="bottom"/>
+    </androidx.cardview.widget.CardView>
+
 </androidx.cardview.widget.CardView>

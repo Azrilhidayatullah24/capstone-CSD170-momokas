@@ -1,13 +1,12 @@
 package com.capstone.momokas.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.capstone.momokas.data.remote.response.KendaraanResponse
+import com.capstone.momokas.data.remote.response.Response
+import com.capstone.momokas.data.repository.KendaraanRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private var repository: KendaraanRepository = KendaraanRepository()) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Home Fragment"
-    }
-    val text: LiveData<String> = _text
+    fun getListSemuKendaraan() : LiveData<List<KendaraanResponse>> = repository.getAllListKendaraan()
 }

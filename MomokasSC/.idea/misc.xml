@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.9071428571428571" />
+        <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/drawable/img_rounded.xml" value="0.2203125" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_forgetpass.xml" value="0.20416666666666666" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
@@ -13,9 +14,9 @@
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.14791666666666667" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_bottom_sheet_dialog.xml" value="0.14791666666666667" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_post.xml" value="0.1" />
+        <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_post.xml" value="0.25" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
-        <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/item_rv_kendaraan.xml" value="0.25" />
+        <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/item_rv_kendaraan.xml" value="0.33" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/layout/item_slider.xml" value="0.18" />
         <entry key="..\:/Koding/Dicoding/MBKM/Capstone Project/capstone-CSD170-momokas/MomokasSC/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Acer/.gradle/caches/transforms-3/678f8f90516713ab9a21055c8d2ba99f/transformed/appcompat-1.4.0/res/drawable/abc_ic_ab_back_material.xml" value="0.22552083333333334" />

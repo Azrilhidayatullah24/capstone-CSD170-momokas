@@ -1,13 +1,17 @@
 package com.capstone.momokas.ui.post
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.capstone.momokas.data.remote.response.KendaraanResponse
+import com.capstone.momokas.data.remote.response.UserResponse
+import com.capstone.momokas.data.repository.KendaraanRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class PostViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Post Fragment"
-    }
-    val text: LiveData<String> = _text
+class PostViewModel(private val dataRepo: KendaraanRepository) : ViewModel() {
+//    fun getDataUser(userId: String) : LiveData<UserResponse> = dataRepo.getDataUser(userId)
 }

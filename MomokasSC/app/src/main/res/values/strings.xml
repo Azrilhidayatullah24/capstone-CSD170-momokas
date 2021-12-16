@@ -36,4 +36,13 @@
     <string name="harga">Harga</string>
     <string name="kepemilikan">Kepemilikan</string>
     <string name="deskrpsi">Deskrpsi</string>
+    <string name="simpan">Simpan</string>
+    <string name="upload_gambar">Upload Gambar</string>
+    <string name="pilih_gambar">Pilih Gambar..</string>
+    <string name="upload">Upload</string>
+    <string name="batal">Batal</string>
+    <string name="menyimpan_data">Menyimpan data..</string>
+    <string name="gambar_sedang_diupload">Gambar sedang di-Upload</string>
+    <string name="warna">Warna</string>
+    <string name="batal_upload">Membatalkan upload</string>
 </resources>

@@ -30,6 +30,7 @@ class EditProfileActivity : AppCompatActivity() {
     private var getEmail: String? = null
     private var getDatabase: FirebaseDatabase? = null
     private var getRefenence: DatabaseReference? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
