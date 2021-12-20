@@ -51,5 +51,12 @@
         <item>Merah Metalik</item>
         <item>Merah Doff</item>
         <item>Putih</item>
+        <item>Grey</item>
+    </string-array>
+
+    <string-array name="transmisi">
+        <item>Manual</item>
+        <item>AT</item>
+        <item>AMT</item>
     </string-array>
 </resources>

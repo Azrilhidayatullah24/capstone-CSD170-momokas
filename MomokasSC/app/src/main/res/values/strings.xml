@@ -45,4 +45,12 @@
     <string name="gambar_sedang_diupload">Gambar sedang di-Upload</string>
     <string name="warna">Warna</string>
     <string name="batal_upload">Membatalkan upload</string>
+    <string name="textContoh_manual">Manual</string>
+    <string name="textContoh_10000km">10000Km</string>
+    <string name="textContoh_hidup">Hidup</string>
+    <string name="textContoh_harga">Rp000.000.000</string>
+    <string name="textContoh_lokasi">Lokasi</string>
+    <string name="textContoh_namauser">NamaUser</string>
+    <string name="ganti">Ganti</string>
+    <string name="transmisi">Transmisi</string>
 </resources>

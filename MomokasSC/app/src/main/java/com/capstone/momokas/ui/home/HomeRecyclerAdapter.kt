@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.momokas.data.remote.response.KendaraanResponse
-import com.capstone.momokas.data.remote.response.Response
 import com.capstone.momokas.databinding.ItemRvKendaraanBinding
 import com.capstone.momokas.ui.home.HomeRecyclerAdapter.*
+import java.text.NumberFormat
+import java.util.*
 
 class HomeRecyclerAdapter(private val  response: List<KendaraanResponse>): RecyclerView.Adapter<ListViewHolder>() {
 
@@ -26,7 +27,17 @@ class HomeRecyclerAdapter(private val  response: List<KendaraanResponse>): Recyc
             Glide.with(holder.itemView.context)
                 .load(data.gambar)
                 .into(imageKendaraan)
-            tvJudul.text = "${data.merk} ${data.tipe} ${data.tahun}"
+
+            tvJudul.text = "${data.merk} ${data.tipe}"
+            tvTahun.text = data.tahun
+
+            val localeID =  Locale("in", "ID")
+            val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+            tvHarga.text = numberFormat.format(data.harga).toString()
+
+            tvKilometer.text = "${data.jumlahKm.toString()}km"
+            tvPajak.text = data.pajak
+            tvTransmisi.text = data.transmisi
         }
     }
 

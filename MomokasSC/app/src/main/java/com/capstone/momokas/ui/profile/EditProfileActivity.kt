@@ -125,7 +125,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private val data: Unit
-        private get() {
+        get() {
             getDatabase = FirebaseDatabase.getInstance()
             getRefenence = getDatabase!!.reference
             val getUserID = auth!!.currentUser!!.uid

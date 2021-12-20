@@ -18,8 +18,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.momokas.R
+import com.capstone.momokas.data.remote.response.UserResponse
+import com.capstone.momokas.ui.home.HomeViewModel
 import com.capstone.momokas.ui.login.LoginActivity
 import com.capstone.momokas.ui.login.RegistModel
 import com.firebase.ui.auth.AuthUI
@@ -39,7 +42,7 @@ import java.util.*
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private val viewModel: ProfileViewModel by viewModels()
 
     private var reference: DatabaseReference? = null
     private var database: DatabaseReference? = null
@@ -69,12 +72,8 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        profileViewModel.text.observe(viewLifecycleOwner, {
-        })
 
         auth = FirebaseAuth.getInstance().currentUser
         profileImage = root.findViewById(R.id.tv_photo_profile)
@@ -95,7 +94,10 @@ class ProfileFragment : Fragment() {
             getPhotoFromStorage(view)
         }
         getphoto()
-        GetData()
+
+        viewModel.getUserData(auth?.uid!!).observe(viewLifecycleOwner, {
+            getData(it)
+        })
 
         val logout = root?.findViewById<MaterialButton>(R.id.btn_logout)
         logout?.setOnClickListener {
@@ -122,32 +124,16 @@ class ProfileFragment : Fragment() {
         return root
     }
 
-
-    private fun GetData() {
-        //Mendapatkan Referensi Database
-        reference = FirebaseDatabase.getInstance().reference
-        reference?.child("User")?.child(auth!!.uid)
-            ?.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val dataprofile: RegistModel? = dataSnapshot.getValue(RegistModel::class.java)
-                    getNama?.text = dataprofile?.nama
-                    getUsername?.text = dataprofile?.username
-                    getAlamat?.text = dataprofile?.alamat
-                    getEmail?.text = dataprofile?.email
-                    getHp?.text = dataprofile?.nohp
-                    progressBar?.visibility = GONE
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    /*
-                Kode ini akan dijalankan ketika ada error dan
-                pengambilan data error tersebut lalu memprint error nya
-                ke LogCat
-               */
-                    Log.e("fragment_profile", databaseError.details + " " + databaseError.message)
-                }
-            })
+    private fun getData(data: UserResponse) {
+        getNama?.text = data.nama
+        getUsername?.text = data.username
+        getAlamat?.text = data.alamat
+        getEmail?.text = data.email
+        getHp?.text = data.nohp
+        progressBar?.visibility = GONE
     }
+
+
 
     //Method Ini Digunakan Untuk Membuka Image dari Galeri atau Kamera
     //Method Ini Digunakan Untuk Menapatkan Hasil pada Activity, dari Proses Yang kita buat sebelumnya

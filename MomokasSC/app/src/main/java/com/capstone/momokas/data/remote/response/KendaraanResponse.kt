@@ -1,26 +1,35 @@
 package com.capstone.momokas.data.remote.response
 
-data class Response(
-    var listKendaraan: List<KendaraanResponse>? = null
+
+data class JenisKendaraan(
+    val jenisKendaraan: List<ItemKendaraan?>? = null
+)
+
+data class ItemKendaraan(
+    val itemKendaraan: List<KendaraanResponse?>? = null
 )
 
 data class KendaraanResponse(
-    var user_id: String,
-    var id: String,
-    var merk: String,
-    var tipe: String,
-    var warna: String,
-    var cc: Int,
-    var tahun: String,
-    var jumlahKm: Int,
-    var pajak: String,
-    var surat: String,
-    var kepemilikan: String,
-    var harga: Int,
-    var Deskripsi: String,
-    var gambar: String,
-//    var terjual: Boolean,
-    var tanggal_post: String,
-    var waktu: String
+    var user_id: String? = null,
+    var nama_user: String? = null,
+    var jenis: String? = null,
+    var lokasi: String? = null,
+    var id: String? = null,
+    var merk: String? = null,
+    var tipe: String? = null,
+    var warna: String? = null,
+    var cc: Int? = null,
+    var tahun: String? = null,
+    var jumlahKm: Int? = null,
+    var pajak: String? = null,
+    var surat: String? = null,
+    var kepemilikan: String? = null,
+    var harga: Int? = null,
+    var Deskripsi: String? = null,
+    var gambar: String? = null,
+    var transmisi: String? = null,
+    var terjual: Boolean? = false,
+    var tanggal_post: String? = null,
+    var waktu: String? = null
 
 )

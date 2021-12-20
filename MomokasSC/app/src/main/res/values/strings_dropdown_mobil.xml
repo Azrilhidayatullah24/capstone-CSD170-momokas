@@ -23,7 +23,7 @@
 
     <string-array name="cc_mobil">
         <item>1500</item>
-        <item>2500</item>
-        <item>3000</item>
+        <item>1200</item>
+        <item>1000</item>
     </string-array>
 </resources>

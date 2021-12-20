@@ -12,6 +12,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class PostViewModel(private val dataRepo: KendaraanRepository) : ViewModel() {
-//    fun getDataUser(userId: String) : LiveData<UserResponse> = dataRepo.getDataUser(userId)
+class PostViewModel(private val repository: KendaraanRepository) : ViewModel() {
+    fun getUserData(id: String) : LiveData<UserResponse> = repository.getDataUser(id)
 }

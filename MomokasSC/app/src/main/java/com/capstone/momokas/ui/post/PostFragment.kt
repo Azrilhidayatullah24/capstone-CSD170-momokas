@@ -3,7 +3,6 @@ package com.capstone.momokas.ui.post
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -13,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,6 +20,7 @@ import androidx.fragment.app.viewModels
 import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.data.remote.response.KendaraanUserResponse
+import com.capstone.momokas.data.remote.response.UserResponse
 import com.capstone.momokas.databinding.FragmentPostBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +37,7 @@ class PostFragment : Fragment() {
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding as FragmentPostBinding
 
-    private val viewModel by viewModels<PostViewModel>()
+    private val viewModel: PostViewModel by viewModels()
 
     private val auth = FirebaseAuth.getInstance().currentUser
     private val getRef: DatabaseReference = FirebaseDatabase.getInstance().reference
@@ -105,7 +104,10 @@ class PostFragment : Fragment() {
 
         //-- Button simpan data --//
         binding.btnSimpan.setOnClickListener {
-                insetData(jenisKendaraaan)
+            insertData(jenisKendaraaan)
+//                viewModel.getUserData(auth?.uid!!).observe(viewLifecycleOwner, {
+//                    Log.e("UserResponse", it.toString())
+//                })
         }
 
 //      *NOTE:  UPDATE BTN BATAL UNTUK DELETE GAMBAR YANG TERUPLOAD
@@ -116,7 +118,7 @@ class PostFragment : Fragment() {
 
     //    FUNCTION    //
     @SuppressLint("SimpleDateFormat")
-    private fun insetData(jenis: String) {
+    private fun insertData(jenis: String) {
 
         with(binding) {
             merkKendaraan = inputMerk.text.toString()
@@ -154,7 +156,10 @@ class PostFragment : Fragment() {
                     val downloadUrl = it.toString()
                     val dataKendaraan = KendaraanResponse(
                         user_id = auth?.uid!!,
+//                        nama_user = dataUser.nama,
+//                        lokasi = dataUser.alamat,
                         id = idImageURL.toString(),
+                        jenis = jenis,
                         merk = merkKendaraan,
                         tipe = tipeKendaraan,
                         warna = warnaKendaraan,
@@ -179,7 +184,7 @@ class PostFragment : Fragment() {
                         waktu = timeFormat.format(Date())
                     )
 
-                    getRef.child("Kendaraan").child(jenis).child(idImageURL.toString()).setValue(dataKendaraan).addOnSuccessListener {
+                    getRef.child("Kendaraan").child(idImageURL.toString()).setValue(dataKendaraan).addOnSuccessListener {
                         getRef.child("User").child(auth.uid).child("Kendaraan").child(jenis).child(idImageURL.toString()).setValue(kendaraanUser)
 
                         binding.progressBar.visibility = View.GONE
@@ -242,7 +247,7 @@ class PostFragment : Fragment() {
         binding.textProgressBar.text = getString(R.string.gambar_sedang_diupload)
         binding.progressBar.visibility = View.VISIBLE
         val imagePath = photoReference.child(idImageURL.toString())
-        imagePath.putFile(mImageUri!!).addOnCompleteListener { task: Task<UploadTask.TaskSnapshot?> ->
+        imagePath.putFile(mImageUri).addOnCompleteListener { task: Task<UploadTask.TaskSnapshot?> ->
                 if (task.isSuccessful) {
                     //Peristiwa ini terjadi saat user berhasil menyimpan datanya kedalam Database
                     binding.tvPilihGambar.apply {
