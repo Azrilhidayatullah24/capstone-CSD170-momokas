@@ -4,16 +4,34 @@
         <item>Mitsubitsi</item>
         <item>Honda</item>
         <item>Suzuki</item>
+        <item>Toyota</item>
+        <item>Daihatsu</item>
     </string-array>
 
     <string-array name="tipe_mitsubitsi">
-        <item>Xpander</item>
-        <item>Pajero</item>
+        <item>Xpander GLX</item>
+        <item>Xpander GLS</item>
+        <item>Xpander EXCEED</item>
+        <item>Xpander SPORT</item>
+        <item>Xpander ULTIMATE</item>
+        <item>Pajero DAKAR ULTIMATE 4x4</item>
+        <item>Pajero DAKAR ULTIMATE 4x2</item>
+        <item>Pajero EXCEED 4x2</item>
+        <item>Pajero GLX</item>
     </string-array>
 
     <string-array name="tipe_hondaMobil">
         <item>Civic</item>
-        <item>Mobilio</item>
+        <item>Mobilio S</item>
+        <item>Mobilio E</item>
+        <item>Mobilio RS</item>
+        <item>Jazz S</item>
+        <item>Jazz RS</item>
+        <item>Brio S</item>
+        <item>Brio E</item>
+        <item>Brio RS</item>
+        <item>CR-V</item>
+        <item>HR-V</item>
     </string-array>
 
     <string-array name="tipe_suzukiMobil">
@@ -23,6 +41,7 @@
 
     <string-array name="cc_mobil">
         <item>1500</item>
+        <item>1300</item>
         <item>1200</item>
         <item>1000</item>
     </string-array>

@@ -9,11 +9,26 @@
     <string-array name="tipe_yamaha">
         <item>Vixion</item>
         <item>Jupiter MX</item>
+        <item>Jupiter Z</item>
+        <item>Nmax</item>
+        <item>Mio Soul GT</item>
+        <item>Mio Fino</item>
+        <item>X-Ride</item>
+        <item>Aerox</item>
+        <item>Lexi</item>
     </string-array>
 
     <string-array name="tipe_hondaMotor">
+        <item>Vario Agnes</item>
+        <item>Vario Techno</item>
         <item>Vario</item>
-        <item>PCX</item>
+        <item>Beat Echo</item>
+        <item>Beat Karbu</item>
+        <item>Beat FI</item>
+        <item>Beat Street</item>
+        <item>Beat Pop</item>
+        <item>PCx</item>
+        <item>XMax</item>
     </string-array>
 
     <string-array name="tipe_suzukiMotor">

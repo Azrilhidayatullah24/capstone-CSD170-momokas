@@ -40,22 +40,17 @@ class KendaraanRepository : KendaraanDataSource {
 
     override fun getListMotor(): LiveData<List<KendaraanResponse>> {
         val listKendaraan = MutableLiveData<List<KendaraanResponse>>()
-        dbStorage.orderByChild("Jenis").equalTo("Motor").addValueEventListener(object : ValueEventListener {
+        dbStorage.orderByChild("jenis").equalTo("Motor").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (ds in snapshot.children) {
-                    val type = ds.child("tipe").getValue(String::class.java)
-                    Log.d("tipe", type.toString())
-                }
-
-//                val list: List<KendaraanResponse> = snapshot.children.map { dataSnapshot ->
-//                    dataSnapshot.getValue(KendaraanResponse::class.java)!!
-//            }
-//                listKendaraan.postValue(list)
-                Log.e("SNAPSHOT", snapshot.value.toString())
+                val list: List<KendaraanResponse> = snapshot.children.map { dataSnapshot ->
+                    dataSnapshot.getValue(KendaraanResponse::class.java)!!
+            }
+                listKendaraan.postValue(list)
+                Log.e("GET_MOTOR", snapshot.value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("SNAPSHOT", "msg: ${error.message}")
+                Log.e("GET_MOTOR", "msg: ${error.message}")
             }
 
         })
@@ -64,17 +59,17 @@ class KendaraanRepository : KendaraanDataSource {
 
     override fun getListMobil(): LiveData<List<KendaraanResponse>> {
         val listKendaraan = MutableLiveData<List<KendaraanResponse>>()
-        dbStorage.equalTo("Mobil").addValueEventListener(object : ValueEventListener {
+        dbStorage.orderByChild("jenis").equalTo("Mobil").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list: List<KendaraanResponse> = snapshot.children.map { dataSnapshot ->
                     dataSnapshot.getValue(KendaraanResponse::class.java)!!
                 }
                 listKendaraan.postValue(list)
-                Log.e("SNAPSHOT", snapshot.value.toString())
+                Log.e("GET_MOBIL", snapshot.value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("SNAPSHOT", "msg: ${error.message}")
+                Log.e("GET_MOBIL", "msg: ${error.message}")
             }
 
         })

@@ -11,8 +11,4 @@ class ProfileViewModel(private var repository: KendaraanRepository = KendaraanRe
 
     fun getUserData(id: String) : LiveData<UserResponse> = repository.getDataUser(id)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Profile Fragment"
-    }
-    val text: LiveData<String> = _text
 }

@@ -22,6 +22,7 @@ import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.data.remote.response.KendaraanUserResponse
 import com.capstone.momokas.data.remote.response.UserResponse
 import com.capstone.momokas.databinding.FragmentPostBinding
+import com.capstone.momokas.ui.profile.ProfileViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -60,6 +61,7 @@ class PostFragment : Fragment() {
     private lateinit var kepemilikanKendaraan: String
     private lateinit var hargaKendaraan: String
     private lateinit var deskripsiKendaraan: String
+    private lateinit var transmisiKendaraan: String
 
     private lateinit var mImageUri: Uri
     private lateinit var idImageURL: UUID
@@ -104,10 +106,9 @@ class PostFragment : Fragment() {
 
         //-- Button simpan data --//
         binding.btnSimpan.setOnClickListener {
-            insertData(jenisKendaraaan)
-//                viewModel.getUserData(auth?.uid!!).observe(viewLifecycleOwner, {
-//                    Log.e("UserResponse", it.toString())
-//                })
+            viewModel.getUserData(auth?.uid!!).observe(viewLifecycleOwner, {
+                insertData(jenisKendaraaan, it)
+                })
         }
 
 //      *NOTE:  UPDATE BTN BATAL UNTUK DELETE GAMBAR YANG TERUPLOAD
@@ -118,7 +119,7 @@ class PostFragment : Fragment() {
 
     //    FUNCTION    //
     @SuppressLint("SimpleDateFormat")
-    private fun insertData(jenis: String) {
+    private fun insertData(jenis: String, user: UserResponse) {
 
         with(binding) {
             merkKendaraan = inputMerk.text.toString()
@@ -132,6 +133,7 @@ class PostFragment : Fragment() {
             kepemilikanKendaraan = inputKepemilikan.text.toString()
             hargaKendaraan = inputHarga.text.toString()
             deskripsiKendaraan = inputDeskripsi.text.toString()
+            transmisiKendaraan = inputTransmisi.text.toString()
         }
 
         if (merkKendaraan.isNotEmpty() &&
@@ -156,8 +158,8 @@ class PostFragment : Fragment() {
                     val downloadUrl = it.toString()
                     val dataKendaraan = KendaraanResponse(
                         user_id = auth?.uid!!,
-//                        nama_user = dataUser.nama,
-//                        lokasi = dataUser.alamat,
+                        nama_user = user.nama,
+                        lokasi = user.alamat,
                         id = idImageURL.toString(),
                         jenis = jenis,
                         merk = merkKendaraan,
@@ -172,6 +174,7 @@ class PostFragment : Fragment() {
                         harga = hargaKendaraan.toInt(),
                         Deskripsi = deskripsiKendaraan,
                         gambar = downloadUrl,
+                        transmisi = transmisiKendaraan,
                         tanggal_post = dateFormat.format(Date()),
                         waktu = timeFormat.format(Date())
                     )
@@ -189,12 +192,38 @@ class PostFragment : Fragment() {
 
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(context, "Data berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                        setValueEmpty()
                     }.addOnFailureListener {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(context, "Data gagal disimpan!", Toast.LENGTH_SHORT).show()
                     }
                 }
         } else Toast.makeText(context, "Lengkapi form dulu", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setValueEmpty() {
+        with(binding) {
+            inputMerk.text = null
+            inputTipe.text = null
+            inputWarna.text = null
+            inputCC.text = null
+            inputTahun.text = null
+            inputKilometer.text = null
+            inputPajak.text = null
+            inputKelengkapan.text = null
+            inputKepemilikan.text = null
+            inputHarga.text = null
+            inputDeskripsi.text = null
+            inputTransmisi.text = null
+            tvPilihGambar.apply {
+                text = getString(R.string.pilih_gambar)
+                isEnabled = true
+            }
+            btnBatalUpload.apply {
+                visibility = View.INVISIBLE
+                isEnabled = false
+            }
+        }
     }
 
     private fun getPhotoFromStorage(view: View?) {
@@ -324,6 +353,7 @@ class PostFragment : Fragment() {
         val kelengkapan = resources.getStringArray(R.array.kelengkapan_surat)
         val kepemilikan = resources.getStringArray(R.array.kepemilikan)
         val warna = resources.getStringArray(R.array.warna)
+        val transmisi = resources.getStringArray(R.array.transmisi)
 
         //-- dropdown merk --//
         val adapterMerk = ArrayAdapter(requireContext(), R.layout.dropdown_item, merk)
@@ -346,6 +376,9 @@ class PostFragment : Fragment() {
         //-- dropdown warna --//
         val adapterWarna = ArrayAdapter(requireContext(), R.layout.dropdown_item, warna)
         binding.inputWarna.setAdapter(adapterWarna)
+        //-- dropdown transmisi --//
+        val adapterTransmisi = ArrayAdapter(requireContext(), R.layout.dropdown_item, transmisi)
+        binding.inputTransmisi.setAdapter(adapterTransmisi)
     }
 
     private fun dropDownMobil(merk: String) {
