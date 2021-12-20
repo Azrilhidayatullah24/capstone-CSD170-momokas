@@ -35,6 +35,8 @@ class HomeRecyclerAdapter(private val  response: List<KendaraanResponse>): Recyc
             val numberFormat = NumberFormat.getCurrencyInstance(localeID)
             tvHarga.text = numberFormat.format(data.harga).toString()
 
+            tvNamaUser.text = data.nama_user
+            tvLokasi.text = data.lokasi
             tvKilometer.text = "${data.jumlahKm.toString()}km"
             tvPajak.text = data.pajak
             tvTransmisi.text = data.transmisi
