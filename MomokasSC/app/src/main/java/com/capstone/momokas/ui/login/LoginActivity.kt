@@ -15,6 +15,7 @@ import com.capstone.momokas.ui.login.ForgetpassActivity
 import android.text.TextUtils
 import android.view.View
 import android.widget.*
+import com.capstone.momokas.ui.detail.DetailActivity
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private var myEmail: EditText? = null

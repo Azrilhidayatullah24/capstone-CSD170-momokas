@@ -22,7 +22,6 @@ import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.data.remote.response.KendaraanUserResponse
 import com.capstone.momokas.data.remote.response.UserResponse
 import com.capstone.momokas.databinding.FragmentPostBinding
-import com.capstone.momokas.ui.profile.ProfileViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

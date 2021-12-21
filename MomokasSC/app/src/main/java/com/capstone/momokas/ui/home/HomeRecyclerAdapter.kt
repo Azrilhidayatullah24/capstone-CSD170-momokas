@@ -1,22 +1,31 @@
 package com.capstone.momokas.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ItemRvKendaraanBinding
+import com.capstone.momokas.ui.detail.DetailActivity
 import com.capstone.momokas.ui.home.HomeRecyclerAdapter.*
 import java.text.NumberFormat
 import java.util.*
 
-class HomeRecyclerAdapter(private val  response: List<KendaraanResponse>): RecyclerView.Adapter<ListViewHolder>() {
+class HomeRecyclerAdapter(private val response: List<KendaraanResponse>) :
+    RecyclerView.Adapter<ListViewHolder>() {
 
-    class ListViewHolder (val binding: ItemRvKendaraanBinding): RecyclerView.ViewHolder(binding.root)
+    companion object {
+        const val EXTRA_DATA = "extra_data"
+    }
+
+    class ListViewHolder(val binding: ItemRvKendaraanBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding= ItemRvKendaraanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRvKendaraanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
@@ -28,18 +37,47 @@ class HomeRecyclerAdapter(private val  response: List<KendaraanResponse>): Recyc
                 .load(data.gambar)
                 .into(imageKendaraan)
 
-            tvJudul.text = "${data.merk} ${data.tipe}"
+            tvJudul?.text = "${data.merk} ${data.tipe}"
             tvTahun.text = data.tahun
 
-            val localeID =  Locale("in", "ID")
+            val localeID = Locale("in", "ID")
             val numberFormat = NumberFormat.getCurrencyInstance(localeID)
             tvHarga.text = numberFormat.format(data.harga).toString()
 
             tvNamaUser.text = data.nama_user
-            tvLokasi.text = data.lokasi
+            tvLokasi.text = data.lokasi.toString()
             tvKilometer.text = "${data.jumlahKm.toString()}km"
-            tvPajak.text = data.pajak
+            tvPajak.text = data.pajak.toString()
             tvTransmisi.text = data.transmisi
+        }
+        holder.itemView.setOnClickListener {
+            val dataKendaraan = KendaraanResponse(
+                data.user_id,
+                data.nama_user,
+                data.jenis,
+                data.lokasi,
+                data.id,
+                data.merk,
+                data.tipe,
+                data.warna,
+                data.cc,
+                data.tahun,
+                data.jumlahKm,
+                data.pajak,
+                data.surat,
+                data.kepemilikan,
+                data.harga,
+                data.Deskripsi,
+                data.gambar,
+                data.transmisi,
+                data.terjual,
+                data.tanggal_post,
+                data.waktu
+
+            )
+            val intentDetail = Intent(it.context, DetailActivity::class.java)
+            intentDetail.putExtra(EXTRA_DATA, dataKendaraan)
+            it.context.startActivity(intentDetail)
         }
     }
 
