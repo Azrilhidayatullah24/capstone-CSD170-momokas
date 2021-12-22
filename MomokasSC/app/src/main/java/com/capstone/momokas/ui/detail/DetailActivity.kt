@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
-import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.item_rv_kendaraan.*
+import com.capstone.momokas.databinding.ActivityDetailBinding
 import java.text.NumberFormat
 import java.util.*
 
@@ -40,10 +38,13 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
+    private lateinit var binding : ActivityDetailBinding
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setData()
     }
 
@@ -76,22 +77,23 @@ class DetailActivity : AppCompatActivity() {
         tvWaktu = listKendaraan?.waktu
 
 
-        Glide.with(this)
-            .load(listKendaraan?.gambar)
-            .into(tvPilihGambar)
+        with(binding) {
+            Glide.with(this@DetailActivity)
+                .load(listKendaraan?.gambar)
+                .into(imgKendaraan)
 
-        inputTipe.text = listKendaraan?.tipe
-        inputMerk.text = listKendaraan?.merk
-        inputWarna.text = ": ${listKendaraan?.warna}"
-        inputCC.text = ": ${listKendaraan?.cc.toString()}"
-        inputTahun.text = ": ${listKendaraan?.tahun}"
-        inputKilometer.text = ": ${listKendaraan?.jumlahKm.toString()}"
-        inputPajak.text = ": ${listKendaraan?.pajak}"
-        inputKelengkapan.text = ": ${listKendaraan?.surat}"
-        inputKepemilikan.text = ": ${listKendaraan?.kepemilikan}"
-        inputDeskripsi.text = listKendaraan?.Deskripsi
-        inputHarga.text = numberFormat.format(listKendaraan?.harga).toString()
-
+            inputTipe.text = listKendaraan?.tipe
+            inputMerk.text = listKendaraan?.merk
+            inputWarna.text = ": ${listKendaraan?.warna}"
+            inputCC.text = ": ${listKendaraan?.cc.toString()}"
+            inputTahun.text = ": ${listKendaraan?.tahun}"
+            inputKilometer.text = ": ${listKendaraan?.jumlahKm.toString()}"
+            inputPajak.text = ": ${listKendaraan?.pajak}"
+            inputKelengkapan.text = ": ${listKendaraan?.surat}"
+            inputKepemilikan.text = ": ${listKendaraan?.kepemilikan}"
+            inputDeskripsi.text = listKendaraan?.Deskripsi
+            inputHarga.text = numberFormat.format(listKendaraan?.harga).toString()
+        }
 
     }
 }

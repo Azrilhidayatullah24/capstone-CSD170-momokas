@@ -99,6 +99,10 @@ class ProfileFragment : Fragment() {
             getData(it)
         })
 
+        viewModel.getListKendaraanUser(auth?.uid!!).observe(viewLifecycleOwner, {
+
+        })
+
         val logout = root?.findViewById<MaterialButton>(R.id.btn_logout)
         logout?.setOnClickListener {
             Toast.makeText(context, "LOGOUT", Toast.LENGTH_SHORT).show()

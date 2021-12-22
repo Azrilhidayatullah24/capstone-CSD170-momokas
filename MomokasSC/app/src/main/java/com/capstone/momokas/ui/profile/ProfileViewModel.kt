@@ -11,4 +11,6 @@ class ProfileViewModel(private var repository: KendaraanRepository = KendaraanRe
 
     fun getUserData(id: String) : LiveData<UserResponse> = repository.getDataUser(id)
 
+    fun getListKendaraanUser(id: String) : LiveData<List<KendaraanResponse>> = repository.getListKendaraanUser(id)
+
 }
