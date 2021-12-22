@@ -6,11 +6,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -19,12 +19,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.UserResponse
-import com.capstone.momokas.ui.home.HomeViewModel
+import com.capstone.momokas.ui.home.HomeRecyclerAdapter
 import com.capstone.momokas.ui.login.LoginActivity
-import com.capstone.momokas.ui.login.RegistModel
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.Task
 import com.google.android.material.button.MaterialButton
@@ -34,7 +33,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import de.hdodenhof.circleimageview.CircleImageView
@@ -63,6 +61,8 @@ class ProfileFragment : Fragment() {
     private var mImageUri: Uri? = null
     var PERMISSION_STORAGE = 1
     var GALLERY_PICK = 2
+    private var recyclerView : RecyclerView? = null
+    private var btnPost : MaterialButton? = null
 
     private val photoReference = FirebaseStorage.getInstance().reference
 
@@ -85,7 +85,9 @@ class ProfileFragment : Fragment() {
         progressBar = root.findViewById(R.id.progressBar)
         foto = root.findViewById(R.id.floatingActionButton)
         getDatabase = FirebaseDatabase.getInstance()
-        getRefenence = getDatabase?.getReference()
+        getRefenence = getDatabase?.reference
+        recyclerView = root.findViewById(R.id.rvKendaraanUser)
+        btnPost = root.findViewById(R.id.btn_post)
 
         //Mendapatkan Referensi dari Firebase Storage
         references = FirebaseStorage.getInstance().reference
@@ -99,7 +101,12 @@ class ProfileFragment : Fragment() {
             getData(it)
         })
 
+        recyclerView?.setHasFixedSize(true)
+
         viewModel.getListKendaraanUser(auth?.uid!!).observe(viewLifecycleOwner, {
+            val mAdapter = ProfileRecyclerAdapter(it)
+            recyclerView?.adapter = mAdapter
+            btnPost?.text = "${mAdapter.itemCount} POST"
 
         })
 

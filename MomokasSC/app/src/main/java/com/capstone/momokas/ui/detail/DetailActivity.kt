@@ -1,9 +1,10 @@
 package com.capstone.momokas.ui.detail
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ActivityDetailBinding
 import java.text.NumberFormat
@@ -38,12 +39,18 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var binding : ActivityDetailBinding
+    private lateinit var binding: ActivityDetailBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail)
+
         binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
         setContentView(binding.root)
         setData()
     }
@@ -87,7 +94,7 @@ class DetailActivity : AppCompatActivity() {
             inputWarna.text = ": ${listKendaraan?.warna}"
             inputCC.text = ": ${listKendaraan?.cc.toString()}"
             inputTahun.text = ": ${listKendaraan?.tahun}"
-            inputKilometer.text = ": ${listKendaraan?.jumlahKm.toString()}"
+            inputKilometer.text = ": ${listKendaraan?.jumlahKm.toString()} km"
             inputPajak.text = ": ${listKendaraan?.pajak}"
             inputKelengkapan.text = ": ${listKendaraan?.surat}"
             inputKepemilikan.text = ": ${listKendaraan?.kepemilikan}"
