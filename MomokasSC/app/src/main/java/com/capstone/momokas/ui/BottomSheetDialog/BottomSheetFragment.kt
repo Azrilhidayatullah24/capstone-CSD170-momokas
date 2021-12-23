@@ -1,14 +1,11 @@
 package com.capstone.momokas.ui.BottomSheetDialog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import com.capstone.momokas.R
 import com.capstone.momokas.databinding.FragmentBottomSheetBinding
-import com.capstone.momokas.databinding.FragmentPostBinding
 import com.capstone.momokas.ui.post.PostFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -43,7 +40,11 @@ class BottomSheetFragment : BottomSheetDialogFragment(), View.OnClickListener {
                 postFragment.arguments = bundle
 
                 parentFragmentManager.beginTransaction()?.apply {
-                    replace(R.id.nav_host_fragment, postFragment, PostFragment::class.java.simpleName)
+                    replace(
+                        R.id.nav_host_fragment,
+                        postFragment,
+                        PostFragment::class.java.simpleName
+                    )
                     addToBackStack(null)
                     commit()
                 }
@@ -58,7 +59,11 @@ class BottomSheetFragment : BottomSheetDialogFragment(), View.OnClickListener {
                 postFragment.arguments = bundle
 
                 parentFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.nav_host_fragment, postFragment, PostFragment::class.java.simpleName)
+                    replace(
+                        R.id.nav_host_fragment,
+                        postFragment,
+                        PostFragment::class.java.simpleName
+                    )
                     addToBackStack(null)
                     commit()
                 }

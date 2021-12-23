@@ -45,9 +45,9 @@ class PostFragment : Fragment() {
 
     //-- variable dropdown --//
     private lateinit var jenisKendaraaan: String
-    private lateinit var merk:Array<String>
-    private lateinit var tipe:Array<String>
-    private lateinit var cc:Array<String>
+    private lateinit var merk: Array<String>
+    private lateinit var tipe: Array<String>
+    private lateinit var cc: Array<String>
 
     private lateinit var merkKendaraan: String
     private lateinit var tipeKendaraan: String
@@ -72,7 +72,7 @@ class PostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPostBinding.inflate(inflater,container,false)
+        _binding = FragmentPostBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -86,7 +86,8 @@ class PostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         jenisKendaraaan = arguments?.getString(JENIS_KENDARAAN).toString()
-        photoReference = FirebaseStorage.getInstance().getReference("Kendaraan").child(jenisKendaraaan)
+        photoReference =
+            FirebaseStorage.getInstance().getReference("Kendaraan").child(jenisKendaraaan)
         idImageURL = UUID.randomUUID()
 
         //-- Handle navigation icon press --//
@@ -107,7 +108,7 @@ class PostFragment : Fragment() {
         binding.btnSimpan.setOnClickListener {
             viewModel.getUserData(auth?.uid!!).observe(viewLifecycleOwner, {
                 insertData(jenisKendaraaan, it)
-                })
+            })
         }
 
 //      *NOTE:  UPDATE BTN BATAL UNTUK DELETE GAMBAR YANG TERUPLOAD
@@ -186,13 +187,16 @@ class PostFragment : Fragment() {
                         waktu = timeFormat.format(Date())
                     )
 
-                    getRef.child("Kendaraan").child(idImageURL.toString()).setValue(dataKendaraan).addOnSuccessListener {
-                        getRef.child("User").child(auth.uid).child("Kendaraan").child(jenis).child(idImageURL.toString()).setValue(kendaraanUser)
+                    getRef.child("Kendaraan").child(idImageURL.toString()).setValue(dataKendaraan)
+                        .addOnSuccessListener {
+                            getRef.child("User").child(auth.uid).child("Kendaraan").child(jenis)
+                                .child(idImageURL.toString()).setValue(kendaraanUser)
 
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, "Data berhasil disimpan!", Toast.LENGTH_SHORT).show()
-                        setValueEmpty()
-                    }.addOnFailureListener {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(context, "Data berhasil disimpan!", Toast.LENGTH_SHORT)
+                                .show()
+                            setValueEmpty()
+                        }.addOnFailureListener {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(context, "Data gagal disimpan!", Toast.LENGTH_SHORT).show()
                     }
@@ -276,27 +280,27 @@ class PostFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
         val imagePath = photoReference.child(idImageURL.toString())
         imagePath.putFile(mImageUri).addOnCompleteListener { task: Task<UploadTask.TaskSnapshot?> ->
-                if (task.isSuccessful) {
-                    //Peristiwa ini terjadi saat user berhasil menyimpan datanya kedalam Database
-                    binding.tvPilihGambar.apply {
-                        text = idImageURL.toString()
-                        isEnabled = false
-                    }
-                    binding.btnBatalUpload.apply {
-                        isEnabled = true
-                        visibility = View.VISIBLE
-                    }
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, "Upload berhasil", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        context, "Terjadi Kesalahan Silakan Coba Lagi",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            if (task.isSuccessful) {
+                //Peristiwa ini terjadi saat user berhasil menyimpan datanya kedalam Database
+                binding.tvPilihGambar.apply {
+                    text = idImageURL.toString()
+                    isEnabled = false
                 }
+                binding.btnBatalUpload.apply {
+                    isEnabled = true
+                    visibility = View.VISIBLE
+                }
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(context, "Upload berhasil", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(
+                    context, "Terjadi Kesalahan Silakan Coba Lagi",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+        }
     }
 
     private fun cancelUploadImage() {

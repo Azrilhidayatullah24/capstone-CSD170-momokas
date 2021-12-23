@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/tvPilihKendaraan"
         style="@style/textItemDropDown"
-        android:text="Pilih Kendaraan"
+        android:text="@string/pilih_kendaraan"
         android:textSize="20sp"
         android:padding="10dp"
         android:gravity="center"
@@ -49,6 +49,7 @@
             android:id="@+id/btnPilihMobil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/deskripsipostmobil"
             android:background="@color/colorPrimary"
             android:src="@drawable/ic_baseline_directions_car_filled_24"
             android:clickable="true"/>
@@ -71,6 +72,7 @@
             android:id="@+id/btnPilihMotor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/deskripsi_post_motor"
             android:background="@color/colorPrimary"
             android:src="@drawable/ic_baseline_moped_24"
             android:clickable="true"/>

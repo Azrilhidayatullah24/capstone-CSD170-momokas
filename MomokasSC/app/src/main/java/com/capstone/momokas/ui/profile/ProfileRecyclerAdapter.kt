@@ -76,6 +76,7 @@ class ProfileRecyclerAdapter(private val response: List<KendaraanResponse>) :
             )
             val intentDetail = Intent(it.context, DetailUserActivity::class.java)
             intentDetail.putExtra(EXTRA_DATA, dataKendaraan)
+            intentDetail.putExtra("id", dataKendaraan)
             it.context.startActivity(intentDetail)
         }
     }

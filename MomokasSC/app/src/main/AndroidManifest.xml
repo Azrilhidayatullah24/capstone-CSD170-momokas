@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Momokas">
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail.DetailUserActivity"
             android:exported="false" />
         <activity
@@ -29,7 +32,7 @@
             android:name=".ui.login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.SplashScreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
 //        })
     }
 
-    private fun getSlider(response : List<SliderResponse>) {
+    private fun getSlider(response: List<SliderResponse>) {
         val adapter = SliderRecyclerAdapter(response)
         binding.rvSlider.adapter = adapter
     }

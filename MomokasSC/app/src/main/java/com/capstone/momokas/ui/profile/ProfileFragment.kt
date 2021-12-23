@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -22,7 +21,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.UserResponse
-import com.capstone.momokas.ui.home.HomeRecyclerAdapter
 import com.capstone.momokas.ui.login.LoginActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.Task
@@ -47,10 +45,10 @@ class ProfileFragment : Fragment() {
     private var auth: FirebaseUser? = null
 
     private var getNama: TextView? = null
-    private  var getUsername:TextView? = null
-    private  var getAlamat:TextView? = null
-    private  var getEmail:TextView? = null
-    private  var getHp:TextView? = null
+    private var getUsername: TextView? = null
+    private var getAlamat: TextView? = null
+    private var getEmail: TextView? = null
+    private var getHp: TextView? = null
     private var getDatabase: FirebaseDatabase? = null
     private var getRefenence: DatabaseReference? = null
     private var references: StorageReference? = null
@@ -61,8 +59,8 @@ class ProfileFragment : Fragment() {
     private var mImageUri: Uri? = null
     var PERMISSION_STORAGE = 1
     var GALLERY_PICK = 2
-    private var recyclerView : RecyclerView? = null
-    private var btnPost : MaterialButton? = null
+    private var recyclerView: RecyclerView? = null
+    private var btnPost: MaterialButton? = null
 
     private val photoReference = FirebaseStorage.getInstance().reference
 
@@ -143,7 +141,6 @@ class ProfileFragment : Fragment() {
         getHp?.text = data.nohp
         progressBar?.visibility = GONE
     }
-
 
 
     //Method Ini Digunakan Untuk Membuka Image dari Galeri atau Kamera

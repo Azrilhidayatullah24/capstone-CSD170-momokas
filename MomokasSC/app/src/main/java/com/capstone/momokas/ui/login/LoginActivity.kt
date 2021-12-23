@@ -1,21 +1,15 @@
 package com.capstone.momokas.ui.login
 
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
-import android.os.Bundle
-import com.capstone.momokas.R
-import com.google.firebase.auth.FirebaseUser
 import android.content.Intent
-import com.capstone.momokas.MainActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.capstone.momokas.ui.login.RegisterActivity
-import com.capstone.momokas.ui.login.ForgetpassActivity
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.*
-import com.capstone.momokas.ui.detail.DetailActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.capstone.momokas.MainActivity
+import com.capstone.momokas.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private var myEmail: EditText? = null

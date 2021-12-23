@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.momokas.R
 import com.capstone.momokas.databinding.ActivityEditProfileBinding
-import com.capstone.momokas.databinding.ActivityRegisterBinding
 import com.capstone.momokas.ui.login.RegistModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*

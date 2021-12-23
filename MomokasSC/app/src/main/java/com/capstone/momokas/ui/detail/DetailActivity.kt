@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide
 import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ActivityDetailBinding
+import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_detail_user.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -33,6 +35,7 @@ class DetailActivity : AppCompatActivity() {
     private var tvTerjual: String? = null
     private var tvTanggal_post: String? = null
     private var tvWaktu: String? = null
+    private var isSold: Boolean? = false
 
 
     companion object {
@@ -82,6 +85,16 @@ class DetailActivity : AppCompatActivity() {
         tvTerjual = listKendaraan?.terjual.toString()
         tvTanggal_post = listKendaraan?.tanggal_post
         tvWaktu = listKendaraan?.waktu
+        isSold = listKendaraan?.terjual
+
+
+        if (isSold == true) {
+            btnCheckoutPublic.setText("TERJUAL")
+            btnCheckoutPublic.setEnabled(false)
+        } else {
+            btnCheckoutPublic.setText("CHECKOUT")
+            btnCheckoutPublic.setEnabled(true)
+        }
 
 
         with(binding) {

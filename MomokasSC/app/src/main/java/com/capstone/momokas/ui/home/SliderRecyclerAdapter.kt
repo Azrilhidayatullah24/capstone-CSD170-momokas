@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.momokas.data.remote.response.SliderResponse
-import com.capstone.momokas.databinding.ItemRvKendaraanBinding
 import com.capstone.momokas.databinding.ItemRvSliderBinding
-import com.capstone.momokas.ui.home.SliderRecyclerAdapter.*
+import com.capstone.momokas.ui.home.SliderRecyclerAdapter.ListViewHolder
 
 class SliderRecyclerAdapter(private val response: List<SliderResponse>) :
     RecyclerView.Adapter<ListViewHolder>() {
 
-    class ListViewHolder(val binding : ItemRvSliderBinding) :
+    class ListViewHolder(val binding: ItemRvSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
     }

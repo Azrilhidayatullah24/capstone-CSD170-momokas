@@ -2,12 +2,19 @@ package com.capstone.momokas.ui.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ActivityDetailUserBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_detail_user.*
 import java.text.NumberFormat
 import java.util.*
+
 
 class DetailUserActivity : AppCompatActivity() {
     private var tvUser_id: String? = null
@@ -31,6 +38,10 @@ class DetailUserActivity : AppCompatActivity() {
     private var tvTerjual: String? = null
     private var tvTanggal_post: String? = null
     private var tvWaktu: String? = null
+    private var isSold: Boolean? = false
+    private var btnTerjual: Button? = null
+    private val getRef: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private lateinit var idImageURL: UUID
 
 
     companion object {
@@ -79,6 +90,39 @@ class DetailUserActivity : AppCompatActivity() {
         tvTerjual = listKendaraan?.terjual.toString()
         tvTanggal_post = listKendaraan?.tanggal_post
         tvWaktu = listKendaraan?.waktu
+        isSold = listKendaraan?.terjual
+
+        if (isSold == true) {
+            btnCheckout.setText("TERJUAL")
+            btnCheckout.setEnabled(false)
+        } else {
+            btnCheckout.setText("BELUM TERJUAL")
+            btnCheckout.setEnabled(true)
+        }
+
+        btnCheckout?.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setCancelable(true)
+                .setTitle("Apakah Kendaraan ini sudah laku Terjual?")
+                .setPositiveButton("Ya") { dialog, which ->
+
+
+                    getRef.child("Kendaraan")
+                        .child(tvId.toString())
+                        .child("terjual")
+                        .setValue(true)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Barang Sudah Terjual!", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Data gagal disimpan!", Toast.LENGTH_SHORT).show()
+                        }
+
+                }
+                .setNegativeButton("Tidak") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
 
 
         with(binding) {
