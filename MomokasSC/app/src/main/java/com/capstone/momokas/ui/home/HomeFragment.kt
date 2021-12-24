@@ -79,12 +79,6 @@ class HomeFragment : Fragment() {
     private fun getKendaraan(response: List<KendaraanResponse>) {
         val adapter = HomeRecyclerAdapter(response)
         binding.rvKendaraan.adapter = adapter
-//        adapter.setOnItemClickCallback(object : TvShowRvAdapter.OnItemClickCallback {
-//            override fun onItemClicked(data: TvItem) {
-//                val idMovie = data.id
-//                showSelectedUser(idMovie)
-//            }
-//        })
     }
 
     private fun getSlider(response: List<SliderResponse>) {

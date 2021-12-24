@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
-import com.capstone.momokas.data.remote.response.KendaraanUserResponse
 import com.capstone.momokas.data.remote.response.UserResponse
 import com.capstone.momokas.databinding.FragmentPostBinding
 import com.google.android.gms.tasks.Task
@@ -174,24 +173,14 @@ class PostFragment : Fragment() {
                         harga = hargaKendaraan.toInt(),
                         Deskripsi = deskripsiKendaraan,
                         gambar = downloadUrl,
+                        wa = "wa.me/${user.nohp}",
                         transmisi = transmisiKendaraan,
-                        tanggal_post = dateFormat.format(Date()),
-                        waktu = timeFormat.format(Date())
-                    )
-                    val kendaraanUser = KendaraanUserResponse(
-                        id = idImageURL.toString(),
-                        merk = merkKendaraan,
-                        tipe = tipeKendaraan,
-                        gambar = downloadUrl,
                         tanggal_post = dateFormat.format(Date()),
                         waktu = timeFormat.format(Date())
                     )
 
                     getRef.child("Kendaraan").child(idImageURL.toString()).setValue(dataKendaraan)
                         .addOnSuccessListener {
-                            getRef.child("User").child(auth.uid).child("Kendaraan").child(jenis)
-                                .child(idImageURL.toString()).setValue(kendaraanUser)
-
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(context, "Data berhasil disimpan!", Toast.LENGTH_SHORT)
                                 .show()

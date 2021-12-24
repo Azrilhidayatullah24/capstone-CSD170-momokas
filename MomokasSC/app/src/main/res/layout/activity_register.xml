@@ -118,7 +118,8 @@
             app:layout_constraintStart_toStartOf="@+id/getEmail"
             app:layout_constraintTop_toBottomOf="@+id/getEmail"
             app:startIconContentDescription="Icon"
-            app:startIconDrawable="@drawable/ic_baseline_phone_24">
+            app:startIconDrawable="@drawable/ic_baseline_phone_24"
+            app:prefixText="+62">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ItemRvKendaraanBinding
 import com.capstone.momokas.ui.detail.DetailActivity
-import com.capstone.momokas.ui.home.HomeRecyclerAdapter.*
+import com.capstone.momokas.ui.home.HomeRecyclerAdapter.ListViewHolder
 import java.text.NumberFormat
 import java.util.*
 
@@ -72,7 +72,8 @@ class HomeRecyclerAdapter(private val response: List<KendaraanResponse>) :
                 data.transmisi,
                 data.terjual,
                 data.tanggal_post,
-                data.waktu
+                data.waktu,
+                data.wa
 
             )
             val intentDetail = Intent(it.context, DetailActivity::class.java)

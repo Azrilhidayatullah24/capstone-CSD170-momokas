@@ -1,18 +1,23 @@
 package com.capstone.momokas.ui.detail
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.capstone.momokas.R
 import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ActivityDetailBinding
-import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.activity_detail_user.*
+import com.google.firebase.auth.FirebaseAuth
 import java.text.NumberFormat
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityDetailBinding
+    private val viewModel: DetailViewModel by viewModels()
+    private val auth = FirebaseAuth.getInstance().currentUser
 
     private var tvUser_id: String? = null
     private var tvNama_user: String? = null
@@ -42,17 +47,14 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var binding: ActivityDetailBinding
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
 
         setContentView(binding.root)
         setData()
@@ -89,11 +91,11 @@ class DetailActivity : AppCompatActivity() {
 
 
         if (isSold == true) {
-            btnCheckoutPublic.setText("TERJUAL")
-            btnCheckoutPublic.setEnabled(false)
+            binding.btnCheckoutPublic.setText("TERJUAL")
+            binding.btnCheckoutPublic.setEnabled(false)
         } else {
-            btnCheckoutPublic.setText("CHECKOUT")
-            btnCheckoutPublic.setEnabled(true)
+            binding.btnCheckoutPublic.setText("CHECKOUT")
+            binding.btnCheckoutPublic.setEnabled(true)
         }
 
 
@@ -113,6 +115,11 @@ class DetailActivity : AppCompatActivity() {
             inputKepemilikan.text = ": ${listKendaraan?.kepemilikan}"
             inputDeskripsi.text = listKendaraan?.Deskripsi
             inputHarga.text = numberFormat.format(listKendaraan?.harga).toString()
+        }
+
+        binding.btnCheckoutPublic.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://${listKendaraan?.wa}"))
+            startActivity(intent)
         }
 
     }

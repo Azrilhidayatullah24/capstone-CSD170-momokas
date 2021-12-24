@@ -13,39 +13,12 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:elevation="10dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btnSeacrh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
-                android:backgroundTint="@color/backgroundMain"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:text="@string/text_cari"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="#716E6E"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints,RtlHardcoded" />
-
-<!--            <ImageView-->
-<!--                android:id="@+id/btnFav"-->
-<!--                android:layout_width="35dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:src="@drawable/ic_baseline_favorite_border_24"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/beranda"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -11,7 +11,6 @@ import com.capstone.momokas.data.remote.response.KendaraanResponse
 import com.capstone.momokas.databinding.ActivityDetailUserBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_detail_user.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -93,14 +92,18 @@ class DetailUserActivity : AppCompatActivity() {
         isSold = listKendaraan?.terjual
 
         if (isSold == true) {
-            btnCheckout.setText("TERJUAL")
-            btnCheckout.setEnabled(false)
+            binding.btnCheckout.apply {
+                setText("TERJUAL")
+                setEnabled(false)
+            }
         } else {
-            btnCheckout.setText("BELUM TERJUAL")
-            btnCheckout.setEnabled(true)
+            binding.btnCheckout.apply {
+                setText("BELUM TERJUAL")
+                setEnabled(true)
+            }
         }
 
-        btnCheckout?.setOnClickListener {
+        binding.btnCheckout?.setOnClickListener {
             AlertDialog.Builder(this)
                 .setCancelable(true)
                 .setTitle("Apakah Kendaraan ini sudah laku Terjual?")

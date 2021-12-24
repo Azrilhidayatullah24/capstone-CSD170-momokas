@@ -115,7 +115,7 @@ class RegisterActivity : AppCompatActivity() {
                 val getUsername = username!!.text.toString()
                 val getnama = nama!!.text.toString()
                 val getalamat = alamat!!.text.toString()
-                val getnohp = notelp!!.text.toString()
+                val getnohp = "62${notelp!!.text.toString()}"
                 auth!!.createUserWithEmailAndPassword(getEmail!!, getPassword!!)
                     .addOnCompleteListener { task ->
                         //Mendapatkan Instance dari Database

@@ -11,8 +11,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class KendaraanRepository : KendaraanDataSource {
 
@@ -74,6 +74,24 @@ class KendaraanRepository : KendaraanDataSource {
 
         })
         return listKendaraan
+    }
+
+
+    override fun getDetailKendaraan(id: String): LiveData<KendaraanResponse> {
+        val dataUser = MutableLiveData<KendaraanResponse>()
+        dbStorage.child(id).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val data: KendaraanResponse? = snapshot.getValue(KendaraanResponse::class.java)
+                dataUser.postValue(data!!)
+                Log.v("GET_DETAIL", snapshot.value.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("GET_DETAIL", "msg: ${error.message}")
+            }
+
+        })
+        return dataUser
     }
 
     override fun getDataUser(id: String): LiveData<UserResponse> {

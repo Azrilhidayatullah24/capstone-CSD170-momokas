@@ -1,7 +1,7 @@
 package com.capstone.momokas.data.remote.response
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 
 data class JenisKendaraan(
@@ -34,6 +34,7 @@ data class KendaraanResponse(
     var transmisi: String? = null,
     var terjual: Boolean? = false,
     var tanggal_post: String? = null,
-    var waktu: String? = null
+    var waktu: String? = null,
+    var wa: String? = null
 
 )  : Parcelable
