@@ -9,7 +9,7 @@ Tema yang dipilih: Resource Sharing & User Generated Content
 - A360R6396 – Azril Hidayatullah 
 
 
-#Cara pengunaan Aplikasi : 
+## Cara pengunaan Aplikasi : 
 
 1. Pengguna wajib melakukan Registrasi dengan mengisi data Full name, Username, Email, phone number, Address, Password dan Retype Password.
 
